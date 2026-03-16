@@ -1,0 +1,78 @@
+Playwright ile testleri çalıştırma yolları
+
+1) En basit: `npx playwright test`
+Projede Playwright yüklüyse, terminalde proje kökünden çalıştır:
+```bash
+npx playwright test
+```
+Bu komut `playwright.config.ts` (veya `.js`) içindeki ayarlara göre tüm testleri çalıştırır.
+
+2) Belirli bir dosyayı çalıştırmak
+Sadece tek bir test dosyasını çalıştırmak için:
+```bash
+npx playwright test tests/first.test.spec.ts
+```
+
+3) Tek bir test veya suite çalıştırmak ( `.only` yerine)
+Test dosyası içinde:
+```ts
+test.only('başarılı bir şey yapar', async ({ page }) => { ... });
+```
+veya komut satırından:
+```bash
+npx playwright test -g "başarılı bir şey yapar"
+```
+
+4) Headless / headed mod
+- Headless (default): `npx playwright test`
+- Tarayıcı açarak (headed) çalıştırmak için:
+```bash
+npx playwright test --headed
+```
+
+5) Belirli bir proje (browser) seçmek
+`playwright.config.ts` içindeki `projects` için örnek:
+```bash
+npx playwright test --project=chromium
+```
+
+6) Paket komutu (package.json içinde script varsa)
+`package.json` içinde şöyle bir script varsa:
+```json
+"scripts": {
+  "test": "playwright test"
+}
+```
+Çalıştırmak için:
+```bash
+npm test
+```
+
+---------
+
+Playwright Testlerini Debug Etme
+
+1) Headed modda test çalıştır
+npx playwright test --headed
+
+2) Slow motion ile test çalıştır
+npx playwright test --headed --slow-mo=1000
+
+3) Trace viewer açmak
+- npx playwright test --trace on
+- test result içerisinde execution görünür.
+- config dosyası içerisinde bu global olarak ayarlanabiliyor.
+- use: {
+     trace: 'on-first-retry' veya 'on'
+  }
+
+4) VS Code içinde debug
+- `.vscode/launch.json` dosyasına debug konfigürasyonu ekle (Playwright dokümantasyonuna bak).
+- Test dosyasında breakpoint koy ve debugger ile çalıştır.
+
+5) --debug 
+- npx playwright test --debug
+- açılan pencereleden adım adım devam et.
+
+
+---
