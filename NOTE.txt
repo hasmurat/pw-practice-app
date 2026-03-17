@@ -50,7 +50,7 @@ npm test
 
 ---------
 
-Playwright Testlerini Debug Etme
+Playwright Testlerini Debug Etme (the sequence of the page snapsots with logs)
 
 1) Headed modda test çalıştır
 npx playwright test --headed
@@ -72,7 +72,22 @@ npx playwright test --headed --slow-mo=1000
 
 5) --debug 
 - npx playwright test --debug
-- açılan pencereleden adım adım devam et.
-
+- açılan pencerelerden adım adım devam et.
 
 ---
+
+HOOKS
+
+- Playwright'da 4 tane hooks var: 
+  beforeAll - beforeEach - afteraAll - afterEach
+
+-------
+
+TIMEOUTS
+Global timeout = the limit of whole test run (no defult timeout)
+Test timeout = the limit of the single test
+                default = 30000
+                This contains:
+                - action timeout (no defult timeout)
+                - navigate timeout (no defult timeout)
+                - expect timeout (default = 5000)

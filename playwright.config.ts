@@ -12,6 +12,7 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  // timeout: 10000, // default süresi buradan artırılabilir veya azaltılabilir. Fakat burası her action için geçerli değil. Döküman kontrol et!
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
